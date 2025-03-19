@@ -1,11 +1,9 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/container2-repo/container2:$COMMIT_SHA', '.']
+  args: ['build', '--platform', 'linux/amd64', '-t', 'us-central1-docker.pkg.dev/k8s-assignment-niveditha/container2-repo/container2:latest', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/container2-repo/container2:$COMMIT_SHA']
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['container', 'clusters', 'get-credentials', 'my-gke-cluster', '--zone', 'us-central1-a', '--project', '$PROJECT_ID']
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: ['set', 'image', 'deployment/container2-deployment', 'container2=us-central1-docker.pkg.dev/$PROJECT_ID/container2-repo/container2:$COMMIT_SHA']
+  args: ['push', 'us-central1-docker.pkg.dev/k8s-assignment-niveditha/container2-repo/container2:latest']
 images:
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/container2-repo/container2:$COMMIT_SHA'
+- 'us-central1-docker.pkg.dev/k8s-assignment-niveditha/container2-repo/container2:latest'
+options:
+  logging: CLOUD_LOGGING_ONLY
