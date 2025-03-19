@@ -27,7 +27,7 @@ def calculate_sum():
             csv_reader = csv.reader(file)
             header = next(csv_reader)
             if 'product' not in header or 'amount' not in header:
-                return jsonify({"file": file_name, "error": "Input file not in CSV format1.{header}"}), 400
+                return jsonify({"file": file_name, "error": "Input file not in CSV format1."+str(header)}), 400
 
             total_sum = 0
             for row in csv_reader:
