@@ -26,20 +26,18 @@ def calculate_sum():
         with open(file_path, 'r') as file:
             csv_reader = csv.reader(file)
             header = next(csv_reader)
-            if 'product' not in header or 'amount' not in header:
-                return jsonify({"file": file_name, "error": "Input file not in CSV format1."}), 400
 
             total_sum = 0
             for row in csv_reader:
                 if len(row) != len(header):
-                    return jsonify({"file": file_name, "error": "Input file not in CSV format2."}), 400
+                    return jsonify({"file": file_name, "error": "Input file not in CSV format."}), 400
                 row_data = dict(zip(header, row))
                 if row_data['product'] == product:
                     total_sum += int(row_data['amount'])
 
             return jsonify({"file": file_name, "sum": total_sum}), 200
     except Exception:
-        return jsonify({"file": file_name, "error": "Input file not in CSV format3."}), 400
+        return jsonify({"file": file_name, "error": "Input file not in CSV format."}), 400
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6001)
