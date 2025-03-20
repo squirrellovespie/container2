@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 @app.route('/calculate', methods=['POST'])
 def calculate_sum():
+    # app.logger.info("Processing calculate sum request")
     data = request.get_json()
 
     if not data or 'file' not in data or 'product' not in data:
